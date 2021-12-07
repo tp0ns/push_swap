@@ -1,4 +1,6 @@
-SRCS	= main.c utils.c init.c exit.c
+SRCS	= srcs/push_swap.c srcs/init.c srcs/exit.c
+
+SRCS	+= srcs/utils/utils.c
 
 OBJS	= $(SRCS:.c=.o)
 

@@ -6,11 +6,11 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:56:05 by tpons             #+#    #+#             */
-/*   Updated: 2021/11/29 16:54:57 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/07 16:19:58 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./push_swap.h"
+#include "../../include/push_swap.h"
 
 int	ft_strlen(char *str)
 {
