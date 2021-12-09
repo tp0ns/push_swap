@@ -9,7 +9,7 @@ ifeq ($(shell uname -s),Darwin)
 endif
 
 #The Target Binary Program
-TARGET				:= libftprintf.a
+TARGET				:= libft.a
 TARGET_BONUS		:= libft.a-bonus
 
 BUILD				:= release

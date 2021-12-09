@@ -35,7 +35,7 @@ cflags.debug		:= -Wall -Werror -Wextra -DDEBUG -ggdb -fsanitize=address -fno-omi
 CFLAGS				:= $(cflags.$(BUILD))
 CPPFLAGS			:= $(cflags.$(BUILD))
 
-lib.release			:=  -Llibft
+lib.release			:=  -Linclude/libft/ -lft
 lib.valgrind		:= $(lib.release)
 lib.debug			:= $(lib.release) -fsanitize=address -fno-omit-frame-pointer
 LIB					:= $(lib.$(BUILD))
@@ -83,13 +83,13 @@ re: fclean all
 clean:
 	@$(RM) -f *.d *.o
 	@$(RM) -rf $(BUILDDIR)
-	@make $@ -C libft
+	@make $@ -C include/libft/
 
 
 # Full Clean, Objects and Binaries
 fclean: clean
 	@$(RM) -rf $(TARGET)
-	@make $@ -C libft
+	@make $@ -C include/libft/
 
 
 # Pull in dependency info for *existing* .o files
@@ -122,7 +122,7 @@ $(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
 	@rm -f $(BUILDDIR)/$*.$(DEPEXT).tmp
 
 libft:
-	@make -C libft
+	@make -C include/libft/
 
 
 norm:
