@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 15:45:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/09 11:55:16 by tpons            ###   ########.fr       */
+/*   Created: 2019/10/07 14:32:57 by tpons             #+#    #+#             */
+/*   Updated: 2021/12/09 11:43:40 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#ifndef LIBFT_H
+# define LIBFT_H
+# include <stdlib.h>
+# include <unistd.h>
 
-void	ft_exit(void)
-{
-	write (2, "Error\n", 7);
-	exit(EXIT_FAILURE);
-}
+size_t	ft_strlen(const char *s);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
 
-int		main(int ac, char **av)
-{
-	(void)av;
-	(void)ac;
-	return (0);
-}
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+
+#endif

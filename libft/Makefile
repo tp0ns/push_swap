@@ -9,8 +9,8 @@ ifeq ($(shell uname -s),Darwin)
 endif
 
 #The Target Binary Program
-TARGET				:= push_swap
-TARGET_BONUS		:= push_swap-bonus
+TARGET				:= libftprintf.a
+TARGET_BONUS		:= libft.a-bonus
 
 BUILD				:= release
 
@@ -35,7 +35,7 @@ cflags.debug		:= -Wall -Werror -Wextra -DDEBUG -ggdb -fsanitize=address -fno-omi
 CFLAGS				:= $(cflags.$(BUILD))
 CPPFLAGS			:= $(cflags.$(BUILD))
 
-lib.release			:=  -Llibft
+lib.release			:= 
 lib.valgrind		:= $(lib.release)
 lib.debug			:= $(lib.release) -fsanitize=address -fno-omit-frame-pointer
 LIB					:= $(lib.$(BUILD))
@@ -63,7 +63,7 @@ GREP				:= grep --color=auto --exclude-dir=.git
 NORMINETTE			:= norminette `ls`
 
 # Default Make
-all: libft $(TARGETDIR)/$(TARGET)
+all: $(TARGETDIR)/$(TARGET)
 	@$(ERASE)
 	@$(ECHO) "$(TARGET)\t\t[$(C_SUCCESS)✅$(C_RESET)]"
 	@$(ECHO) "$(C_SUCCESS)All done, compilation successful! 👌 $(C_RESET)"
@@ -71,7 +71,7 @@ all: libft $(TARGETDIR)/$(TARGET)
 # Bonus rule
 bonus: CFLAGS += -DBONUS
 bonus: CPPFLAGS += -DBONUS
-bonus: libft $(TARGETDIR)/$(TARGET_BONUS)
+bonus: $(TARGETDIR)/$(TARGET_BONUS)
 	@$(ERASE)
 	@$(ECHO) "$(TARGET)\t\t[$(C_SUCCESS)✅$(C_RESET)]"
 	@$(ECHO) "$(C_SUCCESS)All done, compilation successful with bonus! 👌 $(C_RESET)"
@@ -83,13 +83,11 @@ re: fclean all
 clean:
 	@$(RM) -f *.d *.o
 	@$(RM) -rf $(BUILDDIR)
-	@make $@ -C libft
 
 
 # Full Clean, Objects and Binaries
 fclean: clean
 	@$(RM) -rf $(TARGET)
-	@make $@ -C libft
 
 
 # Pull in dependency info for *existing* .o files
@@ -98,7 +96,9 @@ fclean: clean
 # Link
 $(TARGETDIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(TARGETDIR)
-	$(CC) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
+	ar r $(TARGETDIR)/$(TARGET) $^
+# $(CC) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
+
 
 # Link Bonus
 $(TARGETDIR)/$(TARGET_BONUS): $(OBJECTS_BONUS)
@@ -121,12 +121,10 @@ $(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
 	@sed -e 's/.*://' -e 's/\\$$//' < $(BUILDDIR)/$*.$(DEPEXT).tmp | fmt -1 | sed -e 's/^ *//' -e 's/$$/:/' >> $(BUILDDIR)/$*.$(DEPEXT)
 	@rm -f $(BUILDDIR)/$*.$(DEPEXT).tmp
 
-libft:
-	@make -C libft
 
 
 norm:
 	@$(NORMINETTE) | $(GREP) -v "Not a valid file" | $(GREP) "Error\|Warning" -B 1 || true
 
 # Non-File Targets
-.PHONY: all re clean fclean norm bonus libft
+.PHONY: all re clean fclean norm bonus

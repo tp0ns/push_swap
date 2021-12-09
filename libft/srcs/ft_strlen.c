@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:04:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/07 16:16:19 by tpons            ###   ########.fr       */
+/*   Created: 2019/10/07 13:44:53 by tpons             #+#    #+#             */
+/*   Updated: 2021/12/09 11:42:13 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../include/libft.h"
 
-int	*init_stack(int length, char **av)
+size_t	ft_strlen(const char *s)
 {
-	int	*stack;
-	int	i;
+	size_t	i;
 
 	i = 0;
-	stack = malloc(sizeof(int) * length);
-	if (stack == NULL)
-		return (NULL);
-	while (i < length)
-	{
-		if (!is_num(av[i]))
-		{
-			free(stack);
-			return (NULL);
-		}
-		stack[i] = ft_atoi(av[i++]);
-	}
-	return (stack);
+	while (s[i])
+		i++;
+	return (i);
 }

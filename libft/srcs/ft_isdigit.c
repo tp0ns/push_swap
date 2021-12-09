@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpons <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 15:45:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/09 11:55:16 by tpons            ###   ########.fr       */
+/*   Created: 2019/10/07 13:57:46 by tpons             #+#    #+#             */
+/*   Updated: 2019/10/07 15:00:49 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-
-void	ft_exit(void)
+int	ft_isdigit(int c)
 {
-	write (2, "Error\n", 7);
-	exit(EXIT_FAILURE);
-}
-
-int		main(int ac, char **av)
-{
-	(void)av;
-	(void)ac;
+	if (c >= '0' && c <= '9')
+		return (1);
 	return (0);
 }

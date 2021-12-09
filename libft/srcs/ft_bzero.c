@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 15:45:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/09 11:55:16 by tpons            ###   ########.fr       */
+/*   Created: 2019/10/09 17:09:21 by tpons             #+#    #+#             */
+/*   Updated: 2021/12/09 11:40:32 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../include/libft.h"
 
-void	ft_exit(void)
+void	ft_bzero(void *s, size_t n)
 {
-	write (2, "Error\n", 7);
-	exit(EXIT_FAILURE);
-}
+	unsigned char	*str;
 
-int		main(int ac, char **av)
-{
-	(void)av;
-	(void)ac;
-	return (0);
+	str = (unsigned char *)s;
+	while (n-- > 0)
+		*str++ = '\0';
 }

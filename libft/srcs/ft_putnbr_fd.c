@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 15:45:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/09 11:55:16 by tpons            ###   ########.fr       */
+/*   Created: 2019/10/14 16:44:30 by tpons             #+#    #+#             */
+/*   Updated: 2021/12/07 15:48:56 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../include/libft.h"
 
-void	ft_exit(void)
+void	ft_putnbr_fd(int n, int fd)
 {
-	write (2, "Error\n", 7);
-	exit(EXIT_FAILURE);
-}
+	char	c;
 
-int		main(int ac, char **av)
-{
-	(void)av;
-	(void)ac;
-	return (0);
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else
+	{
+		if (n < 0)
+		{
+			n = -n;
+			write(fd, "-", 1);
+		}
+		if (n < 10)
+		{
+			c = n + '0';
+			write(fd, &c, 1);
+		}
+		else
+		{
+			ft_putnbr_fd(n / 10, fd);
+			c = (n % 10) + '0';
+			write(fd, &c, 1);
+		}
+	}
 }
