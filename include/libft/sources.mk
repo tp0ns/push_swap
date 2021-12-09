@@ -2,12 +2,16 @@
 
 ## SRCS ##
 
-SOURCES		+=                		\
-		srcs/ft_atoi.c           	\
-		srcs/ft_putnbr_fd.c      	\
-		srcs/ft_isdigit.c        	\
-		srcs/ft_strlen.c         	\
-		srcs/ft_putstr_fd.c      	\
-		srcs/ft_bzero.c          	\
+SOURCES		+=                 		\
+		srcs/ft_delplate.c        	\
+		srcs/ft_isdigit.c         	\
+		srcs/ft_putstr_fd.c       	\
+		srcs/ft_strlen.c          	\
+		srcs/ft_putnbr_fd.c       	\
+		srcs/ft_bzero.c           	\
+		srcs/ft_stack_size.c      	\
+		srcs/ft_init_stack.c      	\
+		srcs/ft_newplate.c        	\
+		srcs/ft_atoi.c            	\
 
 
