@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:32:57 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/09 23:48:24 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/10 11:57:30 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,29 @@ typedef struct s_stack
 	struct s_plate	*top;
 }					t_stack;
 
-size_t	ft_strlen(const char *s);
-int		ft_isdigit(int c);
-int		ft_atoi(const char *str);
+/*
+** String Related functions
+*/
 
+size_t	ft_strlen(const char *s);
 void	ft_putstr_fd(char *s, int fd);
+
+/*
+** Number related functions
+*/
+
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
 void	ft_putnbr_fd(int n, int fd);
+
+
+/*
+** Stack related functions
+*/
 
 t_stack	*ft_init_stack(void);
 int		ft_stack_size(t_stack *stack);
-
 t_plate	*ft_pushplate(t_stack *stack, int value);
-t_plate	*ft_popplate(t_stack *stack);
+t_stack	*ft_popplate(t_stack *stack);
 
 #endif
