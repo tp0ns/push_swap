@@ -6,27 +6,55 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/09 23:50:20 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/11 01:15:52 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ft_exit(void)
+void	free_data(t_data *data)
 {
-	write (2, "Error\n", 7);
+	if (data->stack_a)
+	{
+		while (data->stack_a->size > 0)
+			ft_popplate(data->stack_a);
+		free(data->stack_a);
+	}
+	if (data->stack_b)
+	{
+		while (data->stack_b->size > 0)
+			ft_popplate(data->stack_b);
+		free(data->stack_b);
+	}
+}
+
+void	ft_error(char *str, t_data *data)
+{
+	ft_putstr_fd("Error : ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);
+	free_data(data);
 	exit(EXIT_FAILURE);
 }
 
 int	main(int ac, char **av)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_data	data;
+	t_plate	*temp;
+	int		i;
 
-	stack_a = ft_init_stack();
-	ft_pushplate(stack_a, 1);
-	printf("Id : %d\n", stack_a->top->value);
-	(void)av;
-	(void)ac;
+	i = 0;
+	if (ac <= 2)
+		exit(EXIT_SUCCESS);
+	data.stack_a = ft_init_stack();
+	data.stack_b = ft_init_stack();
+	parse(ac, av, &data);
+	temp = data.stack_a->top;
+	while (i < data.stack_a->size)
+	{
+		printf("%d\n", temp->value);
+		temp = temp->down;
+		i++;
+	}
 	return (0);
 }

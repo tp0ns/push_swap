@@ -9,9 +9,11 @@ SOURCES		+=                 		\
 		srcs/ft_strlen.c          	\
 		srcs/ft_putnbr_fd.c       	\
 		srcs/ft_bzero.c           	\
+		srcs/ft_strisdigit.c      	\
 		srcs/ft_stack_size.c      	\
 		srcs/ft_pushplate.c       	\
 		srcs/ft_init_stack.c      	\
+		srcs/ft_atod.c            	\
 		srcs/ft_atoi.c            	\
 
 

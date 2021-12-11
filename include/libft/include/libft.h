@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:32:57 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/10 11:57:30 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/11 00:55:02 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <unistd.h>
 
 /*
-**	-----------------t_plate--------------------
-**	Plates are a double linked list representing
-**	each element of a stack represented by stack.
+**	--------------------t_plate--------------------
+**	Plates are a double linked  list  representing
+**	each element of a stack represented by "stack".
 **	It stores 3 more values for sorting purpose.
 */
 
@@ -51,6 +51,7 @@ typedef struct s_stack
 ** String Related functions
 */
 
+int		ft_strisdigit(char *str);
 size_t	ft_strlen(const char *s);
 void	ft_putstr_fd(char *s, int fd);
 
@@ -58,10 +59,10 @@ void	ft_putstr_fd(char *s, int fd);
 ** Number related functions
 */
 
+double	ft_atod(const char *str);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 void	ft_putnbr_fd(int n, int fd);
-
 
 /*
 ** Stack related functions
