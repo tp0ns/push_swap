@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/11 01:15:52 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/11 16:53:13 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,12 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 	t_plate	*temp;
-	int		i;
 
-	i = 0;
 	if (ac <= 2)
 		exit(EXIT_SUCCESS);
 	data.stack_a = ft_init_stack();
 	data.stack_b = ft_init_stack();
 	parse(ac, av, &data);
-	temp = data.stack_a->top;
-	while (i < data.stack_a->size)
-	{
-		printf("%d\n", temp->value);
-		temp = temp->down;
-		i++;
-	}
+	free_data(&data);
 	return (0);
 }
