@@ -6,13 +6,13 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:33:52 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 14:51:08 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 15:20:58 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-t_plate	*ft_pushplate(t_stack *stack, t_plate *new_plate)
+void	ft_pushplate(t_stack *stack, t_plate *new_plate)
 {
 	new_plate->stack = stack;
 	stack->size++;

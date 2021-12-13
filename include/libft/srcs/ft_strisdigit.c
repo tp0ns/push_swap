@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 13:57:46 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/11 00:42:41 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 16:00:38 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_strisdigit(char *str)
 		str++;
 	else if (str && *str == '-')
 		str++;
+	if (*str == '\0')
+		return (0);
 	while (str && *str)
 	{
 		if (!ft_isdigit(*str))

@@ -12,7 +12,7 @@
 
 #include "../include/libft.h"
 
-t_stack	*ft_newplate(t_stack *stack, int input)
+t_plate	*ft_newplate(t_stack *stack, int input)
 {
 	t_plate	*new_plate;
 
