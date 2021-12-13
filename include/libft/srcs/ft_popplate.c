@@ -19,7 +19,7 @@ t_plate	*ft_popplate(t_stack *stack)
 	if (!stack)
 		return (NULL);
 	plate = stack->top;
-	if (stack->size == 1)
+	if (stack->size <= 1)
 	{
 		stack->top = NULL;
 		stack->bot = NULL;
