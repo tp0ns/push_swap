@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:47 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/11 00:54:24 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 10:50:08 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ typedef struct s_data
 	t_stack	*stack_b;
 }			t_data;
 
-void	free_data(t_data *data);
 void	ft_error(char *str, t_data *data);
 
 void	parse(int ac, char **av, t_data *data);
-int		check_if_int(t_data *data, char *str);
 
 #endif

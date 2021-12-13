@@ -6,13 +6,13 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/11 16:53:13 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 11:33:19 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	free_data(t_data *data)
+static void	free_data(t_data *data)
 {
 	if (data->stack_a)
 	{
@@ -50,3 +50,14 @@ int	main(int ac, char **av)
 	free_data(&data);
 	return (0);
 }
+
+/*
+**	int	i = 0;
+**	temp = data.stack_a->top;
+**	while (i < data.stack_a->size)
+**	{
+**		printf("Value : %d, Index : %d\n", temp->value, temp->index);
+**		temp = temp->down;
+**		i++;
+**	}
+*/
