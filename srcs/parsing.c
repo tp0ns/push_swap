@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:30:58 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 11:28:48 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 14:49:30 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	parse(int ac, char **av, t_data *data)
 	cursor = ac - 1;
 	while (cursor >= 1)
 	{
-		if (!ft_pushplate(data->stack_a, check_if_int(data, av[cursor])))
+		if (!ft_newplate(data->stack_a, check_if_int(data, av[cursor])))
 			ft_error("One of the plates failed initializing", data);
 		cursor--;
 	}

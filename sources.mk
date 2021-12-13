@@ -2,8 +2,10 @@
 
 ## SRCS ##
 
-SOURCES		+=           		\
-		srcs/parsing.c      	\
-		srcs/main.c         	\
+SOURCES		+=            		\
+		srcs/parsing.c       	\
+		srcs/sort.c          	\
+		srcs/main.c          	\
+		srcs/commands.c      	\
 
 

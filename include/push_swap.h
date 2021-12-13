@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:47 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 10:50:08 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 16:06:18 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,24 @@ typedef struct s_data
 	t_stack	*stack_b;
 }			t_data;
 
+/*
+**	----------------------List of push_swap instructions-----------------------
+*/
+
+void	swap(t_data *data, char c);
+void	rotate(t_data *data, char c);
+void	rev_rotate(t_data *data, char c);
+
+/*
+-------------------------------------------------------------------------------
+*/
+
 void	ft_error(char *str, t_data *data);
 
 void	parse(int ac, char **av, t_data *data);
+
+int		is_sorted(t_stack *stack);
+
+void	sort(t_data *data);
 
 #endif
