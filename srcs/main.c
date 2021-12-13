@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 16:02:17 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 21:31:36 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,15 @@ int	main(int ac, char **av)
 	// while (i < data.stack_a->size)
 	// {
 	// 	printf("Value : %d, Index : %d\n", temp->value, temp->index);
+	// 	temp = temp->down;
+	// 	i++;
+	// }
+
+	// temp = data.stack_a->top;
+	// i = 0;
+	// while (i < data.stack_a->size)
+	// {
+	// 	printf("Value : %d\n", temp->value);
 	// 	temp = temp->down;
 	// 	i++;
 	// }
