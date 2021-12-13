@@ -3,6 +3,7 @@
 ## SRCS ##
 
 SOURCES		+=                 		\
+		srcs/ft_delplate.c        	\
 		srcs/ft_popplate.c        	\
 		srcs/ft_isdigit.c         	\
 		srcs/ft_putstr_fd.c       	\
@@ -13,6 +14,7 @@ SOURCES		+=                 		\
 		srcs/ft_stack_size.c      	\
 		srcs/ft_pushplate.c       	\
 		srcs/ft_init_stack.c      	\
+		srcs/ft_newplate.c        	\
 		srcs/ft_atod.c            	\
 		srcs/ft_atoi.c            	\
 

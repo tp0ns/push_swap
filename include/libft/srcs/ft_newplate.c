@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pushplate.c                                     :+:      :+:    :+:   */
+/*   ft_newplate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 14:33:52 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 14:51:08 by tpons            ###   ########.fr       */
+/*   Created: 2021/12/10 11:49:31 by tpons             #+#    #+#             */
+/*   Updated: 2021/12/13 14:49:04 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-t_plate	*ft_pushplate(t_stack *stack, t_plate *new_plate)
+t_stack	*ft_newplate(t_stack *stack, int input)
 {
-	new_plate->stack = stack;
-	stack->size++;
-	if (!stack->bot)
-	{
-		stack->top = new_plate;
-		stack->bot = new_plate;
-	}
-	else
-	{
-		stack->top->up = new_plate;
-		stack->bot->down = new_plate;
-		new_plate->up = stack->bot;
-		new_plate->down = stack->top;
-		stack->top = new_plate;
-	}
+	t_plate	*new_plate;
+
+	new_plate = malloc(sizeof(t_plate));
+	if (new_plate == NULL)
+		return (NULL);
+	new_plate->value = input;
+	new_plate->index = -1;
+	new_plate->move = 0;
+	if (stack)
+		ft_pushplate(stack, new_plate);
+	return (new_plate);
 }

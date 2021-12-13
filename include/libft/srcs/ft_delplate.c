@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pushplate.c                                     :+:      :+:    :+:   */
+/*   ft_delplate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 14:33:52 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 14:51:08 by tpons            ###   ########.fr       */
+/*   Created: 2021/12/09 16:55:59 by tpons             #+#    #+#             */
+/*   Updated: 2021/12/13 15:02:28 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-t_plate	*ft_pushplate(t_stack *stack, t_plate *new_plate)
+t_stack	*ft_delplate(t_stack *stack, t_plate *plate)
 {
-	new_plate->stack = stack;
-	stack->size++;
-	if (!stack->bot)
-	{
-		stack->top = new_plate;
-		stack->bot = new_plate;
-	}
-	else
-	{
-		stack->top->up = new_plate;
-		stack->bot->down = new_plate;
-		new_plate->up = stack->bot;
-		new_plate->down = stack->top;
-		stack->top = new_plate;
-	}
+	if (stack && plate == stack->top)
+		free(ft_popplate(stack));
+	else if (!stack)
+		free(plate);
+	return (stack);
 }
