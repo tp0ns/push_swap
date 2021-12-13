@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:30:58 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 14:49:30 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 21:22:07 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,5 @@ void	parse(int ac, char **av, t_data *data)
 	}
 	if (data->stack_a->size > 1)
 		give_index(data);
+	data->len = data->stack_a->size;
 }
