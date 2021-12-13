@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:47 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 17:19:47 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 20:09:24 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct s_data
 {
+	int		len;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 }			t_data;
