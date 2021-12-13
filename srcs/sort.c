@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 11:34:12 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 16:04:59 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/13 21:29:01 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	sort_three(t_data *data)
 			swap(data, 'a');
 		rotate(data, 'a');
 	}
+	//   /!\ doesn't work when reused !!!!!
 	else
 	{
 		if (data->stack_a->bot->index + data->stack_a->bot->up->index == 3)
@@ -41,10 +42,29 @@ static void	sort_three(t_data *data)
 **	
 */
 
-// static void	sort_five(t_data *data)
-// {
-// 	;
-// }
+static void	sort_five(t_data *data)
+{
+	int	top_a;
+	int	top_b;
+
+	while (data->stack_a->size > 3)
+		push(data, 'b');
+	sort_three(data); //fix this
+	while (data->stack_b->size != 0)
+	{
+		top_a = data->stack_a->top->index;
+		top_b = data->stack_b->top->index;
+		if (top_b == data->len || top_b == 1)
+		{
+			push(data, 'a');
+			if (top_b == data->len)
+				rotate(data, 'a');
+		}
+		else
+			while (top_a < top_b)
+				rotate(data, 'a');
+	}
+}
 
 /*
 **	----------------------------is_sorted()------------------------------------
@@ -79,4 +99,6 @@ void	sort(t_data *data)
 		return ;
 	else if (data->stack_a->size <= 3)
 		sort_three(data);
+	else if (data->stack_a->size <= 5)
+		sort_five(data);
 }
