@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 11:34:12 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 21:29:01 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/14 13:18:45 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,67 @@
 
 static void	sort_three(t_data *data)
 {
-	if (data->stack_a->top->index + data->stack_a->top->down->index == 3)
-		swap(data, 'a');
-	else if (data->stack_a->top->index + data->stack_a->top->down->index == 4)
+	int	top;
+	int	mid;
+	int	bot;
+
+	while (!is_sorted(data->stack_a))
 	{
-		if (data->stack_a->bot->index + data->stack_a->bot->up->index == 5)
+		top = data->stack_a->top->index;
+		mid = data->stack_a->top->down->index;
+		bot = data->stack_a->bot->index;
+		if (((mid < top) && (mid < bot)) && top > bot)
+			rotate(data, 'a');
+		else if (((mid > top) && (mid > bot)) && top > bot)
+			rev_rotate(data, 'a');
+		else
 			swap(data, 'a');
-		rotate(data, 'a');
-	}
-	//   /!\ doesn't work when reused !!!!!
-	else
-	{
-		if (data->stack_a->bot->index + data->stack_a->bot->up->index == 3)
-			swap(data, 'a');
-		rev_rotate(data, 'a');
 	}
 }
 
 /*
 **	----------------------------sort_five()------------------------------------
-**	
+**	push to B first two elements, sorts A with sort_three(). Push back in A
+**	B elements verifying its pushed in the right place. (Special case for max
+**	and min index). Proceed to rotate the stack until its fully sorted.
 */
 
 static void	sort_five(t_data *data)
 {
-	int	top_a;
 	int	top_b;
 
 	while (data->stack_a->size > 3)
 		push(data, 'b');
-	sort_three(data); //fix this
+	sort_three(data);
 	while (data->stack_b->size != 0)
 	{
-		top_a = data->stack_a->top->index;
 		top_b = data->stack_b->top->index;
 		if (top_b == data->len || top_b == 1)
 		{
-			push(data, 'a');
-			if (top_b == data->len)
+			if (data->stack_a->top->index == data->len)
 				rotate(data, 'a');
+			push(data, 'a');
+			
 		}
 		else
-			while (top_a < top_b)
-				rotate(data, 'a');
+		{
+			if (search_from_top(data->stack_a, top_b)
+				<= search_from_bot(data->stack_a, top_b))
+				while (data->stack_a->top->index < data->stack_b->top->index)
+					rotate(data, 'a');
+			else
+				while (data->stack_a->top->index > data->stack_b->top->index)
+					rev_rotate(data, 'a');
+			push(data, 'a');
+		}
 	}
+	if (search_from_top(data->stack_a, 1)
+		<= search_from_bot(data->stack_a, 1))
+		while (data->stack_a->top->index != 1)
+			rotate(data, 'a');
+	else
+		while (data->stack_a->top->index != 1)
+			rev_rotate(data, 'a');
 }
 
 /*
@@ -73,17 +90,14 @@ static void	sort_five(t_data *data)
 
 int	is_sorted(t_stack *stack)
 {
-	int		i;
 	t_plate	*plate;	
 
-	i = 1;
 	plate = stack->top;
-	while (i <= stack->size)
+	while (plate != stack->bot)
 	{
-		if (plate->index != i)
+		if (plate->index > plate->down->index)
 			return (0);
 		plate = plate->down;
-		i++;
 	}
 	return (1);
 }
