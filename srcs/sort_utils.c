@@ -6,11 +6,18 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:10:07 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/15 10:35:21 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/15 11:06:51 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+/*
+**	--------------------------search_from_top()--------------------------------
+**	Search how much actions it will take to put the right plate on top of the
+**	stack by executing rotate. Return the number of actions.
+**	if num_actions >= size_of_stack, return(0).
+*/
 
 int	search_from_top(t_stack	*stack, int index)
 {
@@ -29,6 +36,13 @@ int	search_from_top(t_stack	*stack, int index)
 	return (i);
 }
 
+/*
+**	--------------------------search_from_bot()--------------------------------
+**	Search how much actions it will take to put the right plate on top of the
+**	stack by executing rev_rotate. Return the number of actions.
+**	if num_actions >= size_of_stack, return(0).
+*/
+
 int	search_from_bot(t_stack *stack, int index)
 {
 	int		i;
@@ -46,6 +60,13 @@ int	search_from_bot(t_stack *stack, int index)
 	return (i + 1);
 }
 
+/*
+**	--------------------------find_right_place()-------------------------------
+**	Compare search_from_top() and search_from_bot() returns to decide which
+**	action is better to execute. Does this action until top of stack_b can be
+**	rightly pushed.
+*/
+
 void	find_right_place(t_data *data, int top_b)
 {
 	if (search_from_top(data->stack_a, top_b)
@@ -57,6 +78,12 @@ void	find_right_place(t_data *data, int top_b)
 			rev_rotate(data, 'a');
 	push(data, 'a');
 }
+
+/*
+**	--------------------------rotate_until_sorted()----------------------------
+**	Compare search_from_top() and search_from_bot() returns to decide which
+**	action is better to execute. Does this action until lesser is on top.
+*/
 
 void	rotate_until_sorted(t_data *data)
 {
