@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:47 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/14 12:32:50 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/15 10:17:37 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	parse(int ac, char **av, t_data *data);
 
 int		search_from_top(t_stack	*stack, int index);
 int		search_from_bot(t_stack *stack, int index);
+void	find_right_place(t_data *data, int top_b);
+void	rotate_until_sorted(t_data *data);
 
 void	sort(t_data *data);
 

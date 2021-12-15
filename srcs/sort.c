@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 11:34:12 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/14 13:18:45 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/15 10:37:12 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,11 @@ static void	sort_five(t_data *data)
 			if (data->stack_a->top->index == data->len)
 				rotate(data, 'a');
 			push(data, 'a');
-			
 		}
 		else
-		{
-			if (search_from_top(data->stack_a, top_b)
-				<= search_from_bot(data->stack_a, top_b))
-				while (data->stack_a->top->index < data->stack_b->top->index)
-					rotate(data, 'a');
-			else
-				while (data->stack_a->top->index > data->stack_b->top->index)
-					rev_rotate(data, 'a');
-			push(data, 'a');
-		}
+			find_right_place(data, top_b);
 	}
-	if (search_from_top(data->stack_a, 1)
-		<= search_from_bot(data->stack_a, 1))
-		while (data->stack_a->top->index != 1)
-			rotate(data, 'a');
-	else
-		while (data->stack_a->top->index != 1)
-			rev_rotate(data, 'a');
+	rotate_until_sorted(data);
 }
 
 /*
