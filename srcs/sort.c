@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 11:34:12 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/15 10:37:12 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/20 08:26:27 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	sort_five(t_data *data)
 			push(data, 'a');
 		}
 		else
-			find_right_place(data, top_b);
+			find_right_place(data, 'a');
 	}
 	rotate_until_sorted(data);
 }
@@ -99,4 +99,6 @@ void	sort(t_data *data)
 		sort_three(data);
 	else if (data->stack_a->size <= 5)
 		sort_five(data);
+	else
+		sort_big(data);
 }

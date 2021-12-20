@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:30:58 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 21:22:07 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/20 08:26:03 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,21 @@ static void	give_index(t_data *data)
 	}
 }
 
+static void	give_chunks(t_data *data, int chunks)
+{
+	t_plate	*plate;
+	int		chunk_size;
+
+	plate = data->stack_a->top;
+	chunk_size = data->stack_a->size / chunks;
+	while (plate != data->stack_a->bot)
+	{
+		plate->chunk = (plate->index / chunk_size) + 1;
+		plate = plate->down;
+	}
+	plate->chunk = (plate->index / chunk_size) + 1;
+}
+
 /*
 **	----------------------------parse()--------------------------------
 **	Parse adds "plates" in stack_a as long as they are integers.
@@ -89,5 +104,9 @@ void	parse(int ac, char **av, t_data *data)
 	}
 	if (data->stack_a->size > 1)
 		give_index(data);
+	if (data->stack_a->size > 5 && data->stack_a->size <= 100)
+		give_chunks(data, 5);
+	else if (data->stack_a->size > 5 && data->stack_a->size > 100)
+		give_chunks(data, 11);
 	data->len = data->stack_a->size;
 }

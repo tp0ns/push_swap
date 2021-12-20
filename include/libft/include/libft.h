@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:32:57 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/13 15:22:47 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/20 06:31:20 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_plate
 	struct s_stack	*stack;
 	int				value;
 	int				index;
-	int				move;
+	int				chunk;
 	struct s_plate	*up;
 	struct s_plate	*down;
 }					t_plate;

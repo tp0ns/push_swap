@@ -7,6 +7,7 @@ SOURCES		+=              		\
 		srcs/sort.c            	\
 		srcs/main.c            	\
 		srcs/sort_utils.c      	\
+		srcs/sort_big.c        	\
 		srcs/commands.c        	\
 
 

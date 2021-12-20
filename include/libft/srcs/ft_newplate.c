@@ -21,7 +21,7 @@ t_plate	*ft_newplate(t_stack *stack, int input)
 		return (NULL);
 	new_plate->value = input;
 	new_plate->index = -1;
-	new_plate->move = 0;
+	new_plate->chunk = 0;
 	if (stack)
 		ft_pushplate(stack, new_plate);
 	return (new_plate);
