@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:32:57 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/20 06:31:20 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/23 19:39:21 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_putnbr_fd(int n, int fd);
 
 t_stack	*ft_init_stack(void);
 int		ft_stack_size(t_stack *stack);
+void	ft_printstack_fd(t_stack *stack, int fd);
 
 void	ft_pushplate(t_stack *stack, t_plate *new_plate);
 t_plate	*ft_newplate(t_stack *stack, int value);
