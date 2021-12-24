@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 06:26:20 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/20 08:38:51 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/24 19:45:30 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,8 @@ static void	treat_chunk(t_data *data, int chunk_id)
 	{
 		if (search_chunk_top(data->stack_a, chunk_id)
 			<= search_chunk_bot(data->stack_a, chunk_id))
-		{	while (data->stack_a->top->chunk != chunk_id)
-			{
-				ft_putstr_fd("haha", 2);
+			while (data->stack_a->top->chunk != chunk_id)
 				rotate(data, 'a');
-			}}
 		else
 			while (data->stack_a->top->chunk != chunk_id)
 				rev_rotate(data, 'a');

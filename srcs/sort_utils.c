@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:10:07 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/20 08:21:46 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/24 14:48:13 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,17 @@ int	search_index_top(t_stack	*stack, int index)
 
 	i = 0;
 	temp = stack->top;
-	while (index > temp->index && i < stack->size)
+	if (index == smallest_id(stack))
+	{
+		while (temp->index != index)
+		{
+			temp = temp->down;
+			i++;
+		}
+		return (i);
+	}
+	while ((temp->index < index || temp->up->index > index)
+		&& i < stack->size)
 	{
 		temp = temp->down;
 		i++;
@@ -50,7 +60,17 @@ int	search_index_bot(t_stack *stack, int index)
 
 	i = 0;
 	temp = stack->bot;
-	while (index < temp->index && i < stack->size)
+	if (index == smallest_id(stack))
+	{
+		while (temp->index != index)
+		{
+			temp = temp->down;
+			i++;
+		}
+		return (i);
+	}
+	while ((temp->index < index || temp->up->index > index)
+		&& i < stack->size)
 	{
 		temp = temp->up;
 		i++;
@@ -61,52 +81,57 @@ int	search_index_bot(t_stack *stack, int index)
 }
 
 /*
-**	--------------------------find_right_place()-------------------------------
-**	Compare search_index_top() and search_index_bot() returns to decide which
-**	action is better to execute. Does this action until top of stack_b can be
-**	rightly pushed.
-*/
-
-void	find_right_place(t_data *data, char c)
-{
-	t_stack	*sender;
-	t_stack	*receiver;
-
-	if (c == 'a')
-	{
-		sender = data->stack_b;
-		receiver = data->stack_a;
-	}
-	else if (c == 'b')
-	{
-		sender = data->stack_a;
-		receiver = data->stack_b;
-	}
-	else
-		return (ft_putstr_fd("Instructions use a or b as param\n", 2));
-	if (search_index_top(receiver, sender->top->index)
-		<= search_index_bot(receiver, sender->top->index))
-		while (receiver->top->index < sender->top->index)
-			rotate(data, c);
-	else
-		while (receiver->top->index > sender->top->index)
-			rev_rotate(data, c);
-	push(data, c);
-}
-
-/*
 **	--------------------------rotate_until_sorted()----------------------------
 **	Compare search_index_top() and search_index_bot() returns to decide which
 **	action is better to execute. Does this action until lesser is on top.
 */
 
+int	smallest_id(t_stack *stack)
+{
+	int		i;
+	t_plate	*plate;
+
+	plate = stack->top;
+	i = plate->index;
+	while (plate && plate != stack->bot)
+	{
+		if (i > plate->index)
+			i = plate->index;
+		plate = plate->down;
+	}
+	if (i > plate->index)
+		i = plate->index;
+	return (i);
+}
+
+int	biggest_id(t_stack *stack)
+{
+	int		i;
+	t_plate	*plate;
+
+	plate = stack->top;
+	i = plate->index;
+	while (plate && plate != stack->bot)
+	{
+		if (i < plate->index)
+			i = plate->index;
+		plate = plate->down;
+	}
+	if (i < plate->index)
+		i = plate->index;
+	return (i);
+}
+
 void	rotate_until_sorted(t_data *data)
 {
-	if (search_index_top(data->stack_a, 1)
-		<= search_index_bot(data->stack_a, 1))
-		while (data->stack_a->top->index != 1)
+	int	smallest;
+
+	smallest = smallest_id(data->stack_a);
+	if (search_index_top(data->stack_a, smallest)
+		<= search_index_bot(data->stack_a, smallest))
+		while (data->stack_a->top->index != smallest)
 			rotate(data, 'a');
 	else
-		while (data->stack_a->top->index != 1)
+		while (data->stack_a->top->index != smallest)
 			rev_rotate(data, 'a');
 }

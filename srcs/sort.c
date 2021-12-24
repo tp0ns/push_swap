@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 11:34:12 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/20 08:26:27 by tpons            ###   ########.fr       */
+/*   Updated: 2021/12/24 14:50:48 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,42 @@ static void	sort_three(t_data *data)
 }
 
 /*
+**	--------------------------find_right_place()-------------------------------
+**	Compare search_index_top() and search_index_bot() returns to decide which
+**	action is better to execute. Does this action until top of stack_b can be
+**	rightly pushed.
+*/
+
+void	find_right_place(t_data *data, char c)
+{
+	t_stack	*sender;
+	t_stack	*receiver;
+
+	if (c == 'a')
+	{
+		sender = data->stack_b;
+		receiver = data->stack_a;
+	}
+	else if (c == 'b')
+	{
+		sender = data->stack_a;
+		receiver = data->stack_b;
+	}
+	else
+		return (ft_putstr_fd("Instructions use a or b as param\n", 2));
+	if (search_index_top(receiver, sender->top->index)
+		<= search_index_bot(receiver, sender->top->index))
+		while (receiver->top->index < sender->top->index
+			|| receiver->top->up->index > sender->top->index)
+			rotate(data, c);
+	else
+		while (receiver->top->index < sender->top->index
+			|| receiver->top->up->index > sender->top->index)
+			rev_rotate(data, c);
+	push(data, c);
+}
+
+/*
 **	----------------------------sort_five()------------------------------------
 **	push to B first two elements, sorts A with sort_three(). Push back in A
 **	B elements verifying its pushed in the right place. (Special case for max
@@ -55,11 +91,13 @@ static void	sort_five(t_data *data)
 	while (data->stack_b->size != 0)
 	{
 		top_b = data->stack_b->top->index;
-		if (top_b == data->len || top_b == 1)
+		if (top_b > biggest_id(data->stack_a)
+			|| top_b < smallest_id(data->stack_a))
 		{
-			if (data->stack_a->top->index == data->len)
-				rotate(data, 'a');
+			rotate_until_sorted(data);
 			push(data, 'a');
+			if (data->stack_a->top->index > biggest_id(data->stack_a))
+				rotate(data, 'a');
 		}
 		else
 			find_right_place(data, 'a');
