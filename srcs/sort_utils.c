@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:10:07 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/24 14:48:13 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/03 11:59:24 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	search_index_top(t_stack	*stack, int index)
 
 	i = 0;
 	temp = stack->top;
-	if (index == smallest_id(stack))
+	if (index == smallest_id(stack) || index == biggest_id(stack))
 	{
 		while (temp->index != index)
 		{
@@ -60,7 +60,7 @@ int	search_index_bot(t_stack *stack, int index)
 
 	i = 0;
 	temp = stack->bot;
-	if (index == smallest_id(stack))
+	if (index == smallest_id(stack) || index == biggest_id(stack))
 	{
 		while (temp->index != index)
 		{
@@ -91,6 +91,8 @@ int	smallest_id(t_stack *stack)
 	int		i;
 	t_plate	*plate;
 
+	if (stack->size == 0)
+		return (0);
 	plate = stack->top;
 	i = plate->index;
 	while (plate && plate != stack->bot)
@@ -109,6 +111,8 @@ int	biggest_id(t_stack *stack)
 	int		i;
 	t_plate	*plate;
 
+	if (stack->size == 0)
+		return (0);
 	plate = stack->top;
 	i = plate->index;
 	while (plate && plate != stack->bot)
@@ -122,16 +126,25 @@ int	biggest_id(t_stack *stack)
 	return (i);
 }
 
-void	rotate_until_sorted(t_data *data)
+void	rotate_until_sorted(t_data *data, char c)
 {
-	int	smallest;
+	int		smallest;
+	t_stack	*stack;
 
-	smallest = smallest_id(data->stack_a);
-	if (search_index_top(data->stack_a, smallest)
-		<= search_index_bot(data->stack_a, smallest))
-		while (data->stack_a->top->index != smallest)
-			rotate(data, 'a');
+	if (c == 'a')
+		stack = data->stack_a;
+	else if (c == 'b')
+		stack = data->stack_b;
 	else
-		while (data->stack_a->top->index != smallest)
-			rev_rotate(data, 'a');
+		return (ft_putstr_fd("Instructions use a or b as param\n", 2));
+	if (stack->size <= 1)
+		return ;
+	smallest = smallest_id(stack);
+	if (search_index_top(stack, smallest)
+		<= search_index_bot(stack, smallest))
+		while (stack->top->index != smallest)
+			rotate(data, c);
+	else
+		while (stack->top->index != smallest)
+			rev_rotate(data, c);
 }

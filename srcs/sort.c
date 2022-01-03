@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 11:34:12 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/24 14:50:48 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/03 11:59:04 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	find_right_place(t_data *data, char c)
 		sender = data->stack_a;
 		receiver = data->stack_b;
 	}
-	else
-		return (ft_putstr_fd("Instructions use a or b as param\n", 2));
+	if (receiver->size <= 1)
+		return (push(data, c));
 	if (search_index_top(receiver, sender->top->index)
 		<= search_index_bot(receiver, sender->top->index))
 		while (receiver->top->index < sender->top->index
@@ -94,7 +94,7 @@ static void	sort_five(t_data *data)
 		if (top_b > biggest_id(data->stack_a)
 			|| top_b < smallest_id(data->stack_a))
 		{
-			rotate_until_sorted(data);
+			rotate_until_sorted(data, 'a');
 			push(data, 'a');
 			if (data->stack_a->top->index > biggest_id(data->stack_a))
 				rotate(data, 'a');
@@ -102,7 +102,7 @@ static void	sort_five(t_data *data)
 		else
 			find_right_place(data, 'a');
 	}
-	rotate_until_sorted(data);
+	rotate_until_sorted(data, 'a');
 }
 
 /*

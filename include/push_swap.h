@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:47 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/24 13:50:19 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/03 11:38:34 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		search_index_bot(t_stack *stack, int index);
 void	find_right_place(t_data *data, char c);
 int		biggest_id(t_stack *stack);
 int		smallest_id(t_stack *stack);
-void	rotate_until_sorted(t_data *data);
+void	rotate_until_sorted(t_data *data, char c);
 
 void	sort_big(t_data *data);
 
