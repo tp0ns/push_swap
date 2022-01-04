@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 06:26:20 by tpons             #+#    #+#             */
-/*   Updated: 2022/01/03 11:50:40 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/04 11:59:58 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,17 @@ static void	treat_chunk(t_data *data, int chunk_id)
 
 static void	send_to_a(t_data *data)
 {
-	if (search_index_top(data->stack_b, biggest_id(data->stack_b))
-		<= search_index_bot(data->stack_b, biggest_id(data->stack_b)))
-		while (data->stack_b->top->index != biggest_id(data->stack_b))
-			rotate(data, 'b');
-	else
-		while (data->stack_a->top->index != biggest_id(data->stack_b))
-			rev_rotate(data, 'b');
 	while (data->stack_b->top)
+	{
+		if (search_index_top(data->stack_b, biggest_id(data->stack_b))
+			<= search_index_bot(data->stack_b, biggest_id(data->stack_b)))
+			while (data->stack_b->top->index != biggest_id(data->stack_b))
+				rotate(data, 'b');
+		else
+			while (data->stack_b->top->index != biggest_id(data->stack_b))
+				rev_rotate(data, 'b');
 		push(data, 'a');
+	}
 }
 
 void	sort_big(t_data *data)
