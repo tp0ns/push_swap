@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:30:58 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/20 08:26:03 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/04 11:29:24 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,39 @@ static void	give_index(t_data *data)
 	}
 }
 
+/*
+**	----------------------------give_chunks()-----------------------------------
+**	If there is more than 5 valid arguments this function is called to assign
+**	each "plate" a chunk. There is a given number of chunks, depending on the
+**	number of plates.
+*/
+
 static void	give_chunks(t_data *data, int chunks)
 {
 	t_plate	*plate;
+	int		i;
+	int		j;
 	int		chunk_size;
+	int		leftover;
 
 	plate = data->stack_a->top;
+	i = 1;
+	leftover = 0;
+	if ((data->stack_a->size % chunks) != 0)
+		leftover = data->stack_a->size % chunks;
 	chunk_size = data->stack_a->size / chunks;
-	while (plate != data->stack_a->bot)
+	while (i <= 5)
 	{
-		plate->chunk = (plate->index / chunk_size) + 1;
-		plate = plate->down;
+		j = 0;
+		while ((i != 1 && j < chunk_size)
+			|| (i == 1 && j < (chunk_size + leftover)))
+		{
+			if (plate->index <= (chunk_size * i) + leftover && ++j)
+				plate->chunk = i;
+			plate = plate->down;
+		}
+		i++;
 	}
-	plate->chunk = (plate->index / chunk_size) + 1;
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 11:34:12 by tpons             #+#    #+#             */
-/*   Updated: 2022/01/03 11:59:04 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/03 15:06:51 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,42 +39,6 @@ static void	sort_three(t_data *data)
 }
 
 /*
-**	--------------------------find_right_place()-------------------------------
-**	Compare search_index_top() and search_index_bot() returns to decide which
-**	action is better to execute. Does this action until top of stack_b can be
-**	rightly pushed.
-*/
-
-void	find_right_place(t_data *data, char c)
-{
-	t_stack	*sender;
-	t_stack	*receiver;
-
-	if (c == 'a')
-	{
-		sender = data->stack_b;
-		receiver = data->stack_a;
-	}
-	else if (c == 'b')
-	{
-		sender = data->stack_a;
-		receiver = data->stack_b;
-	}
-	if (receiver->size <= 1)
-		return (push(data, c));
-	if (search_index_top(receiver, sender->top->index)
-		<= search_index_bot(receiver, sender->top->index))
-		while (receiver->top->index < sender->top->index
-			|| receiver->top->up->index > sender->top->index)
-			rotate(data, c);
-	else
-		while (receiver->top->index < sender->top->index
-			|| receiver->top->up->index > sender->top->index)
-			rev_rotate(data, c);
-	push(data, c);
-}
-
-/*
 **	----------------------------sort_five()------------------------------------
 **	push to B first two elements, sorts A with sort_three(). Push back in A
 **	B elements verifying its pushed in the right place. (Special case for max
@@ -103,25 +67,6 @@ static void	sort_five(t_data *data)
 			find_right_place(data, 'a');
 	}
 	rotate_until_sorted(data, 'a');
-}
-
-/*
-**	----------------------------is_sorted()------------------------------------
-**	Check if the stack given as argument is sorted (return 1) or not (return 0)
-*/
-
-int	is_sorted(t_stack *stack)
-{
-	t_plate	*plate;	
-
-	plate = stack->top;
-	while (plate != stack->bot)
-	{
-		if (plate->index > plate->down->index)
-			return (0);
-		plate = plate->down;
-	}
-	return (1);
 }
 
 /*
