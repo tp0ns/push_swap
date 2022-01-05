@@ -6,11 +6,35 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:05:18 by tpons             #+#    #+#             */
-/*   Updated: 2022/01/04 11:17:23 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/05 10:16:58 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+int	search_chunk_top(t_stack *stack, int chunk_id)
+{
+	int		i;
+	t_plate	*plate;
+
+	i = 0;
+	plate = stack->top;
+	while (plate->chunk != chunk_id && i++ < stack->size)
+		plate = plate->down;
+	return (i);
+}
+
+int	search_chunk_bot(t_stack *stack, int chunk_id)
+{
+	int		i;
+	t_plate	*plate;
+
+	i = 0;
+	plate = stack->bot;
+	while (plate->chunk != chunk_id && i++ < stack->size)
+		plate = plate->up;
+	return (i);
+}
 
 /*
 **	----------------------------is_sorted()------------------------------------
@@ -56,7 +80,6 @@ void	find_right_place(t_data *data, char c)
 	t_stack	*sender;
 	t_stack	*receiver;
 
-	receiver = NULL;
 	if (c == 'a')
 	{
 		sender = data->stack_b;
@@ -67,7 +90,9 @@ void	find_right_place(t_data *data, char c)
 		sender = data->stack_a;
 		receiver = data->stack_b;
 	}
-	if (receiver->size >= 1)
+	else
+		return ;
+	if (receiver->size <= 1)
 		return (push(data, c));
 	choose_rotate(sender, receiver, data, c);
 	push(data, c);
