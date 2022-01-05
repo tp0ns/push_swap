@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 06:26:20 by tpons             #+#    #+#             */
-/*   Updated: 2022/01/04 11:59:58 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/05 10:16:34 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,6 @@ static int	is_chunk_moved(t_stack *stack, int chunk_id)
 		i++;
 	}
 	return (1);
-}
-
-static int	search_chunk_top(t_stack *stack, int chunk_id)
-{
-	int		i;
-	t_plate	*plate;
-
-	i = 0;
-	plate = stack->top;
-	while (plate->chunk != chunk_id && i++ < stack->size)
-		plate = plate->down;
-	return (i);
-}
-
-static int	search_chunk_bot(t_stack *stack, int chunk_id)
-{
-	int		i;
-	t_plate	*plate;
-
-	i = 0;
-	plate = stack->bot;
-	while (plate->chunk != chunk_id && i++ < stack->size)
-		plate = plate->up;
-	return (i);
 }
 
 static void	treat_chunk(t_data *data, int chunk_id)
