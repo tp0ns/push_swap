@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:45:22 by tpons             #+#    #+#             */
-/*   Updated: 2021/12/24 19:43:46 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/05 10:22:36 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	main(int ac, char **av)
 	data.stack_b = ft_init_stack();
 	parse(ac, av, &data);
 	sort(&data);
-	ft_printstack_fd(data.stack_a, 2);
 	free_data(&data);
 	return (0);
 }
