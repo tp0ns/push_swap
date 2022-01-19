@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:30:58 by tpons             #+#    #+#             */
-/*   Updated: 2022/01/04 11:29:24 by tpons            ###   ########.fr       */
+/*   Updated: 2022/01/19 11:42:27 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,14 @@ static void	give_chunks(t_data *data, int chunks)
 	if ((data->stack_a->size % chunks) != 0)
 		leftover = data->stack_a->size % chunks;
 	chunk_size = data->stack_a->size / chunks;
-	while (i <= 5)
+	while (i <= chunks)
 	{
 		j = 0;
 		while ((i != 1 && j < chunk_size)
 			|| (i == 1 && j < (chunk_size + leftover)))
 		{
-			if (plate->index <= (chunk_size * i) + leftover && ++j)
+			if (plate->chunk == 0 && plate->index <= (chunk_size * i) + leftover
+				&& ++j)
 				plate->chunk = i;
 			plate = plate->down;
 		}
